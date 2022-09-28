@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Formulario</title>
 </head>
@@ -16,35 +16,27 @@
             <div>
                 <div class="columnas row">
                     <div class="col-4">
-                        <img class="img-fluid" src="img/Icon.jpg" alt="">
+                        <img class="img-fluid" src="img/Icon.jpg">
                     </div>
                     <div class="pp col-4">
                         <label class="form-label">Nombre</label>
-                        <input class="form-control m-1" type="text" onkeypress="return soloLetras(event);" required
-                            id="nombre">
+                        <input class="form-control m-1" type="text" pattern="^(?!\s*$).+" onkeypress="return validacionLetras(event);" required  id="nombre">
                         <label class="form-label">Apellido</label>
-                        <input class="form-control m-1" type="text" onkeypress="return soloLetras(event);" required
-                            id="apellido">
-
+                        <input class="form-control m-1" type="text" pattern="^(?!\s*$).+" onkeypress="return validacionLetras(event);" required id="apellido">
                         <label class="form-label">Pais</label>
-                        <input class="form-control m-1" type="text" onkeypress="return soloLetras(event);" required
-                            id="pais">
+                        <input class="form-control m-1" type="text" pattern="^(?!\s*$).+" onkeypress="return validacionLetras(event);" required id="pais">
                         <label class="form-label">Ciudad</label>
-                        <input class="form-control m-1" type="text" onkeypress="return soloLetras(event);" required
-                            id="ciudad">
+                        <input class="form-control m-1" type="text" pattern="^(?!\s*$).+" onkeypress="return validacionLetras(event);" required id="ciudad">
                     </div>
                     <div class="pp col-4">
                         <label class="form-label">Direccion</label>
-                        <input class="form-control m-1" type="text" id="direccion">
+                        <input class="form-control m-1" type="text" pattern="^(?!\s*$).+" required id="direccion">
                         <label class="form-label">Cedula</label>
-                        <input class="form-control m-1" type="text" onkeypress="return soloNumeros(event);" required
-                            id="cedula">
+                        <input class="form-control m-1" type="text" pattern="[0-9]+" onkeypress="return valideKeyNumber(event);" required id="cedula">
                         <label class="form-label">Edad</label>
-                        <input class="form-control m-1" type="text" onkeypress="return soloNumeros(event);" required
-                            minlength="1" maxlength="3" id="edad">
+                        <input class="form-control m-1" type="text" onkeypress="return valideKeyNumber(event);" required minlength="1" maxlength="3" id="edad">
                         <label class="form-label">Telefono</label>
-                        <input class="form-control m-1" type="text" onkeypress="return soloNumeros(event);" required
-                            minlength="7" maxlength="10" id="telefono">
+                        <input class="form-control m-1" type="text" onkeypress="return valideKeyNumber(event);" required minlength="7" maxlength="10" id="telefono">
                     </div>
                     <div class="col-9 mb-md-3 text-center">
                         <button class="btn btn-primary btn-sm" onclick="registrarPersona()">Registrar

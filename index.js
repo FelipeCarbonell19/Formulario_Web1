@@ -6,13 +6,13 @@ const registrarPersona = () => {
     if (cedula_Validacion(cedula)) {
       alert("Este usuario ya ha sido registrado");
     } else {
-      const nombre = document.getElementById("nombre").value;
-      const apellido = document.getElementById("apellido").value;
-      const pais = document.getElementById("pais").value;
-      const ciudad = document.getElementById("ciudad").value;
-      const direccion = document.getElementById("direccion").value;
-      const edad = document.getElementById("edad").value;
-      const telefono = document.getElementById("telefono").value;
+      const nombre = document.getElementById("nombre").value.trim();
+      const apellido = document.getElementById("apellido").value.trim();
+      const pais = document.getElementById("pais").value.trim();
+      const ciudad = document.getElementById("ciudad").value.trim();
+      const direccion = document.getElementById("direccion").value.trim();
+      const edad = document.getElementById("edad").value.trim();
+      const telefono = document.getElementById("telefono").value.trim();
       tablaPersonas.innerHTML +=
         "<tr><td>" +
         nombre +
@@ -32,7 +32,7 @@ const registrarPersona = () => {
         telefono +
         "</td></tr>";
 
-      const nuevoUsuario = {
+      const nuevaPersona = {
         nombre: nombre,
         apellido: apellido,
         pais: pais,
@@ -42,31 +42,31 @@ const registrarPersona = () => {
         edad: edad,
         telefono: telefono,
       };
-      usuarios.push(nuevoUsuario);
+      persona.push(nuevaPersona);
     }
   }
 };
 
 const listarPersona = () => {
   let contenido = "";
-  for (let i = 0; i < usuarios.length; i++) {
+  for (let i = 0; i < persona.length; i++) {
     contenido +=
       "<tr><td>" +
-      usuarios[i].nombre +
+      persona[i].nombre +
       "</td><td>" +
-      usuarios[i].apellido +
+      persona[i].apellido +
       "</td><td>" +
-      usuarios[i].pais +
+      persona[i].pais +
       "</td><td>" +
-      usuarios[i].ciudad +
+      persona[i].ciudad +
       "</td><td>" +
-      usuarios[i].direccion +
+      persona[i].direccion +
       "</td><td>" +
-      usuarios[i].cedula +
+      persona[i].cedula +
       "</td><td>" +
-      usuarios[i].edad +
+      persona[i].edad +
       "</td><td>" +
-      usuarios[i].telefono +
+      persona[i].telefono +
       "</td></tr>";
   }
   tablaPersonas.innerHTML = contenido;
@@ -74,10 +74,10 @@ const listarPersona = () => {
 console.log("");
 
 const cedula_Validacion = (cedula) => {
-  for (let i = 0; i < usuarios.length; i++) {
+  for (let i = 0; i < persona.length; i++) {
     console.log(cedula);
-    console.log(usuarios[i].cedula);
-    if (cedula == usuarios[i].cedula) {
+    console.log(persona[i].cedula);
+    if (cedula == persona[i].cedula) {
       return true;
     }
   }
@@ -104,20 +104,52 @@ const validarPersona = () => {
     !edad ||
     !telefono
   ) {
-    alert("Debe Llenar Campos Faltantes");
+    alert("Campos incompletos!");
     return false;
   } else {
     return true;
   }
 };
 
-const usuarios = [
+function validacionLetras(e) {
+  var key = e.keyCode || e.which,
+    tecla = String.fromCharCode(key).toLowerCase(),
+    letras =
+      " áéíóúabcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ",
+    especiales = [8, 37, 39, 46],
+    tecla_especial = false;
+
+  for (var i in especiales) {
+    if (key == especiales[i]) {
+      tecla_especial = true;
+      break;
+    }
+  }
+
+  if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+    return false;
+  }
+}
+
+function valideKeyNumber(evt) {
+  var code = evt.which ? evt.which : evt.keyCode;
+
+  if (code == 8) {
+    return true;
+  } else if (code >= 48 && code <= 57) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const persona = [
   {
     nombre: "Andres",
     apellido: "Felipe",
     cedula: 1001818460,
     ciudad: "Del Cairo",
-    direccion: "Calle 72 #35-25",
+    direccion: "Calle Las Bandidas",
     telefono: "1-202728-2330",
     pais: "Wakanda",
     edad: 21,
